@@ -13,24 +13,26 @@ public class Main {
             System.out.print("FIFO simulation\n"
                     + "Enter a string: ");
             value = s.nextLine();
-            if(index>2)
+            if(index>2) //Frame size is 3
                 index=0;
             try{
                 for(int i=0;i<memory.size();i++)
+                    //Checks if the value already exists in memory
                     if(value.equals(memory.get(i))){
                         System.out.println("\n"+frame());
-                        continue main;
+                        continue main; //Skips if the value exists
                     }
-                memory.set(index, value);
+                memory.set(index, value); //Replaces the value in the frame
                 index++;
             }catch(IndexOutOfBoundsException e){
+                //Error handling: Adds new value if no value exists in the frame
                 memory.add(index, value);
                 index++;
             }
             System.out.println("\n"+frame());
         }
     }
-    public static String frame(){
+    public static String frame(){ //Displays the page frames
         String out = "";
         for(int i=0;i<memory.size();i++)
             out+="\t"+memory.get(i)+"\n";
