@@ -14,16 +14,16 @@ public static void main(String args[])
     System.out.print("Enter number of pages : ");
     int nr=sc.nextInt();
   
-    int page[]=new int[nr];
-    int frame[]=new int[nr];
+    String page[]=new String[nr];
+    String frame[]=new String[nr];
   
     System.out.println("Enter pages : ");
   
     for(int i=0;i<nr;i++)
-        page[i]=sc.nextInt();
+        page[i]=sc.next();
   
     for(int i=0;i<nf;i++)
-        frame[i]=-1;
+        frame[i]="-1";
   
     System.out.println();
   
@@ -44,7 +44,7 @@ public static void main(String args[])
      
             for(int y=0;y<nf;y++)
             {
-                if(frame[y] == page[i])
+                if(frame[y].equals(page[i]))
                 {
                     flag=1;
                     hit++;
@@ -53,7 +53,7 @@ public static void main(String args[])
             }
     
             if(flag==0)
-                if(frame[j]==-1)
+                if(frame[j].equals("-1"))
                 { 
                     frame[j]=page[i];
                     miss++;
@@ -75,7 +75,7 @@ public static void main(String args[])
                         j++;
                 } 
         for(int k=0;k<nf;k++){
-            if(frame[k]==-1)
+            if(frame[k].equals("-1"))
                 System.out.print("\t  ");
             else
                 System.out.print("\t"+frame[k]+"\t  ");
@@ -84,7 +84,7 @@ public static void main(String args[])
    
     for(int a=0;a<nf;a++)
         {
-            if(frame[a]==-1)
+            if(frame[a].equals("-1"))
                 age[a]=0;
             else
                 age[a]++;
