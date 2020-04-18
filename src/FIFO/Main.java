@@ -12,7 +12,7 @@ public class Main {
     }
     
     public static void page(String[] memory, int pagenum){
-        int index = 0; String value;
+        int index = 0; float hit = 0, miss =0; String value;
   main: for(int i=0;i<pagenum;i++){
             System.out.print("\nEnter a String: ");
             value = s.nextLine();
@@ -21,19 +21,26 @@ public class Main {
             for(int j=0;j<memory.length;j++)
                 //Checks if the value already exists in memory
                 if(value.equals(memory[j])){
-                    System.out.println("\n"+frameDisp(memory));
+                    System.out.println("\n"+frameDisp(memory, true, j));
+                    hit++;
                     continue main; //Skips if the value exists
                 }
             memory[index]=value; //Replaces the value in the frame
-            index++;
-            System.out.println("\n"+frameDisp(memory));
+            index++; miss++;
+            System.out.println("\n"+frameDisp(memory, false, index));
         }
+        System.out.println("Hit = "+hit
+        +"\nMiss = "+miss
+        +"\nRatio = "+(hit/miss));
     }
     
-    public static String frameDisp(String[] memory){ //Displays the page frames
+    public static String frameDisp(String[] memory, boolean hit, int index){ //Displays the page frames
         String out = "";
         for(int i=0;i<memory.length;i++)
-            out+="\t"+memory[i]+"\n";
-        return "Page frames:\n"+out+"\n";
+            if(i==index && hit)
+                out+="\t"+memory[i]+" -- hit\n";
+            else
+                out+="\t"+memory[i]+" -- miss\n";
+        return "Page frames:\n"+out;
     }
 }
